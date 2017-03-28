@@ -59,9 +59,14 @@ public class Algorithm952 {
                     generateFile();
                     break;
                 case 3:
-                    System.out.println("Using Merge Sort Method For Sorting.");
-                    //voroodi mikhad!! az generateFile bayad estefade konam??
-                    //mergeSort();
+                    System.out.println("Please Wait. Using getArray Method.");
+                    int[] a = getArray();
+                    System.out.println("---Using Merge Sort Method For Sorting---");
+                    long t1 = System.currentTimeMillis();
+                    mergeSort(a);
+                    long t2 = System.currentTimeMillis();
+                    long time = t2 - t1;
+                    System.out.println("Running Time : "+ time +" Miliseconds");
                     break;
                 case 4:
                     System.out.println("Using TripleMergeSort for sorting.");
@@ -179,12 +184,14 @@ public class Algorithm952 {
         /*  Iman Shirali - 9450016
             Mohammad Hassan Helali Jula-
             Amirhossein Salahmanesh- 9450035
-            Run time for this function:-------
+             4 seconds < Run time for this function < 6 seconds
         */
+        
+        //چک کردن طول ارایه 
 	if(a.length<=1){
             return a;
 	}
-
+        //تقسیم کردن اریه اصلی به دو ارایه 
 	int b[];
 	int c[];
 	int x=a.length;
@@ -206,9 +213,10 @@ public class Algorithm952 {
 	for(int i=b.length;i<a.length ;i++){
             c[i-b.length]=a[i];
 	}
-
+        //استفاده از مرج سورت برای دو ارایه جدید
 	b=mergeSort(b);
 	c=mergeSort(c);
+        //ترکیب کردن دو ارایه مرتب شده که از دو فراخوانی بالا به دست امده اند
 	return merge(b,c);
 
     }
@@ -219,8 +227,10 @@ public class Algorithm952 {
             Mohammad Hassan Helali-
             Amirhossein Salahmanesh- 9450035
         */
+        //ساختن ارایه ای با طولی به اندازه ارایه اصلی
 	int res[]=new int[b.length+c.length];
 	int i=0,j=0,k=0;
+        //مقایسه کردن مقادیر و قرار دادن مقدار کوچکتر در ارای جواب
 	while(i<b.length && j<c.length){
             if(b[i]>c[j]){
 		res[k]=c[j];
@@ -232,6 +242,7 @@ public class Algorithm952 {
             }
             k++;
             }
+        //مقادیر باقی مانده به ارایه جواب انتقال می یابند
             if(i==b.length){
 		while(j<c.length){
 		res[k]=c[j];
